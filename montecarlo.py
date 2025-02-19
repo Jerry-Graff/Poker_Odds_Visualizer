@@ -49,15 +49,18 @@ def evaluate_five_card_hand(cards):
         return (5, high_straight)
     if 3 in counts:
         trip_rank = max(r for r, count in freqs.items() if count == 3)
-        kickers = sorted((RANK_VALUES[r] for r in freqs if freqs[r] != 3), reverse=True)
+        kickers = sorted(
+            (RANK_VALUES[r] for r in freqs if freqs[r] != 3), reverse=True)
         return (4, RANK_VALUES[trip_rank], kickers)
     if counts.count(2) >= 2:
-        pair_ranks = sorted((RANK_VALUES[r] for r, count in freqs.items() if count == 2), reverse=True)
+        pair_ranks = sorted(
+            (RANK_VALUES[r] for r, count in freqs.items() if count == 2), reverse=True)
         kicker = max(RANK_VALUES[r] for r in freqs if freqs[r] == 1)
         return (3, pair_ranks, kicker)
     if 2 in counts:
         pair_rank = max(r for r, count in freqs.items() if count == 2)
-        kickers = sorted((RANK_VALUES[r] for r in freqs if freqs[r] == 1), reverse=True)
+        kickers = sorted(
+            (RANK_VALUES[r] for r in freqs if freqs[r] == 1), reverse=True)
         return (2, RANK_VALUES[pair_rank], kickers)
     return (1, rank_nums)
 
